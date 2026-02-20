@@ -1,0 +1,37 @@
+Explain this repository clearly for a technical reader.
+
+Include:
+1. What the project does
+2. Main features
+3. Technologies used
+4. Typical use cases
+5. Who should use it
+6. Maturity level
+
+Be concise but informative.
+No marketing tone.
+
+
+####
+
+Explain this software project clearly.
+
+Describe:
+1 purpose
+2 main features
+3 technologies
+4 use cases
+5 target users
+6 maturity
+
+Metadata:
+{metadata}
+
+Languages:
+{languages}
+
+Frameworks:
+{frameworks}
+
+README:
+{readme}

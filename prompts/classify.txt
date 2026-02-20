@@ -1,0 +1,63 @@
+Example taxonomy:
+
+Web application
+
+Python package
+
+ML model
+
+Data pipeline
+
+DevOps tooling
+
+Mobile app
+
+CLI tool
+
+Research project
+
+Template / boilerplate
+
+Library / SDK
+
+Classifier prompt:
+
+Classify this software repository.
+
+Return JSON:
+{
+  "category": "...",
+  "confidence": 0-1,
+  "tags": ["..."]
+}
+
+Repository metadata:
+{metadata}
+
+Languages:
+{languages}
+
+README:
+{readme}
+
+
+#####
+
+Classify this software repository.
+
+Return JSON with:
+- category
+- confidence
+- tags
+
+Metadata:
+{metadata}
+
+Languages:
+{languages}
+
+Frameworks:
+{frameworks}
+
+README:
+{readme}

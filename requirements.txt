@@ -1,4 +1,12 @@
-scikit-learn
-pandas
-numpy
 beautifulsoup4
+fastapi
+httpx
+ipython
+numpy
+pandas
+prometheus-client
+python-dotenv
+requests
+scikit-learn
+structlog
+uvicorn
