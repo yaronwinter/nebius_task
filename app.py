@@ -1,16 +1,18 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from services.github_service import fetch_repository_bundle
-from services.repo_analyzer import detect_frameworks
-from services.classifier import classify_repository
+from services.summarizer import summarize_repository
+from utils import logger, SummarizeError, SummarizeSuccess
 from config import LLM_PROVIDER
-from observability import logger
 from services.llm.openai_provider import OpenAIProvider
-
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, HttpUrl
-
-app = FastAPI()
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+from requests import Request
+import json
+import re
+from typing import Union
 
 if LLM_PROVIDER == "openai":
     llm = OpenAIProvider()
@@ -20,33 +22,44 @@ else:
 class SummarizeRequest(BaseModel):
     github_url: HttpUrl
 
+app = FastAPI()
 
-class SummarizeResponse(BaseModel):
-    summary: str
-    technologies: list[str]
-    structure: str
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    return JSONResponse(
+        status_code=400,
+        content={
+            "status": "error",
+            "message": "Invalid request format"
+        },
+    )
 
-
-@app.post("/summarize", response_model=SummarizeResponse)
+@app.post("/summarize", response_model=Union[SummarizeSuccess, SummarizeError])
 async def summarize(request: SummarizeRequest):
 
     try:
         repo_url = str(request.github_url)
 
         bundle = await fetch_repository_bundle(repo_url)
-        #frameworks = detect_frameworks(bundle["files"], bundle["readme"])
 
         logger.info(f"bundle keys: {bundle.keys()}")
-        #logger.info(f"frameworks: {type(frameworks)}, content: {frameworks}")
 
-        result = await classify_repository(bundle=bundle, llm=llm)
-            #{**bundle, "frameworks": frameworks}, llm
-        #)
+        result = await summarize_repository(bundle=bundle, llm=llm)
 
         logger.info(type(result))
-        logger.info(result)
+        logger.info(f"result: {result} ### End")
 
-        return result
+        raw_output = result
+        try:
+            cleaned = re.sub(r"```json|```", "", result).strip()
+            result = json.loads(cleaned)
+        except json.JSONDecodeError as e:
+            logger.info(f"parsing error: {e}")
+            return SummarizeError(message=f"LLM returned invalid JSON: {e}\nRaw output:\n{raw_output}")
 
+        logger.info("Good Results")
+        return SummarizeSuccess(**result)
+    
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.info("Results Failed")
+        return SummarizeError(message=str(e))

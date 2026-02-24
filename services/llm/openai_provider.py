@@ -1,5 +1,5 @@
 from openai import AsyncOpenAI
-from config import OPENAI_API_KEY, DEFAULT_LLM_MODEL, DEFAULT_EMBED_MODEL
+from config import OPENAI_API_KEY, DEFAULT_LLM_MODEL
 from .base import LLMProvider
 
 
@@ -13,10 +13,3 @@ class OpenAIProvider(LLMProvider):
             input=prompt
         )
         return resp.output_text
-
-    async def embed(self, text):
-        resp = await self.client.embeddings.create(
-            model=DEFAULT_EMBED_MODEL,
-            input=text
-        )
-        return resp.data[0].embedding
