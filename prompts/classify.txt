@@ -26,9 +26,9 @@ Classify this software repository.
 
 Return JSON:
 {
-  "category": "...",
-  "confidence": 0-1,
-  "tags": ["..."]
+  "summary": "...",
+  "technologies": ["...",...],
+  "structure": "..."
 }
 
 Repository metadata:
@@ -40,15 +40,17 @@ Languages:
 README:
 {readme}
 
+Files:
+{files}
 
 #####
 
 Classify this software repository.
 
 Return JSON with:
-- category
-- confidence
-- tags
+- summary
+- technologies
+- structure
 
 Metadata:
 {metadata}
@@ -56,8 +58,8 @@ Metadata:
 Languages:
 {languages}
 
-Frameworks:
-{frameworks}
+Files:
+{files}
 
 README:
 {readme}

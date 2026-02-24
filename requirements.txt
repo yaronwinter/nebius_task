@@ -1,8 +1,12 @@
+anthropic
 beautifulsoup4
+faiss-cpu
 fastapi
 httpx
 ipython
+jinja2
 numpy
+openai
 pandas
 prometheus-client
 python-dotenv

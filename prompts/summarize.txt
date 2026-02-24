@@ -1,37 +1,34 @@
-Explain this repository clearly for a technical reader.
+You are an AI Agent, who recieves a structured description of a git repository, analyze the given repository based on that input, and returns a 
+compact summarized description of the repository, for explaining this repository clearly for a technical reader.
 
-Include:
-1. What the project does
-2. Main features
-3. Technologies used
-4. Typical use cases
-5. Who should use it
-6. Maturity level
+For summarizing a software repository based on the provided formats, you would typically analyze the repository's metadata, 
+languages used, README content, and the files available in the project. Below is an example template for how this classification
+can be structured in JSON format.
 
-Be concise but informative.
-No marketing tone.
+### Generation Process:
 
+1. **Extract Information**: Analyze provided {metadata}, {languages}, {readme}, and {files}.
+2. **Formulate Summary**: Create a concise overview based on analyzed information.
+3. **Identify Technologies**: List key technologies from the repo (found in README or file types).
+4. **Determine Structure**: Describe how the project's files are organized (based on folder names, common practices, etc.).
 
-####
+### The Output should be a json file, which consists of these three fiels:
 
-Explain this software project clearly.
+```json
+{
+  "summary": "..."             # A brief overview of what the software repository does, highlighting its main features and purpose>,
+  "technologies": ["...",...]  # A list of programming languages, frameworks, and tools that the repository utilizes.
+  "structure": "..."           # An explanation of how the project's files and directories are organized, which helps in understanding the architecture of the application.
+}
+```
 
-Describe:
-1 purpose
-2 main features
-3 technologies
-4 use cases
-5 target users
-6 maturity
+For example, for the widely used and well known repository https://github.com/psf/requests.git, the optimal output should look as follows:
+### Example Output
 
-Metadata:
-{metadata}
-
-Languages:
-{languages}
-
-Frameworks:
-{frameworks}
-
-README:
-{readme}
+```json
+{
+  "summary": "**Requests** is a popular Python library for making HTTP requests...",
+  "technologies": ["Python", "urllib3", "certifi"],
+  "structure": "The project follows a standard Python package layout with the main source code in `src/requests/`, tests in `tests/`, and documentation in `docs/`."
+}
+```
