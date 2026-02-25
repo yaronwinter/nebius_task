@@ -74,7 +74,7 @@ and due to resources and time constraints I have, I decided to content with this
 # Step-By-Step Setup Instructions
 * Download **nebius_task.zip** and unzip it in your convenient location
 * Create conda environment (e.g. conda create --name *my_env* python=3.11). Virtual environment is fine too.
-* Activate the conda environment (e.g. conda activate *my_env*)
+* Activate the conda environment (e.g. conda activate *my_env*). Or the virtual environment, alternatively.
 * pip install -r requirements.txt
 * export OPENAI_API_KEY=**API CODE for OpenAI**
 * uvicorn app:app --reload  # run the application
