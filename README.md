@@ -61,7 +61,7 @@ The results seemd reasonable and adequate, but the number of files may present a
 As extensive research of this subject is, of course, beyond the scope of this task, I decided to try few
 simple ways for reducing and limiting the amount of information sent to the LLM:
 
-      (1) Exclude the *files* components, which is by far the *heaconstraintsvier* repo component
+      (1) Exclude the *files* components, which is by far the *heavier* repo component
       
       (2) Define a list of source code extensions (e.g. *.py, *.cc, *.js, etc.), and exclude all files with different extensions
       
