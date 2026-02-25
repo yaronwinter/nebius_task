@@ -70,3 +70,8 @@ simple ways for reducing and limiting the amount of information sent to the LLM:
 
 As the first attempt - excluding the *files* component - induced good performance (very similar to the performance with *files*),
 and due to resources and time constraints I have, I decided to content with this configuration.
+
+# S
+*    xxx
+*    yyy
+*    zzz
