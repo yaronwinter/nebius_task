@@ -14,7 +14,7 @@ Root Folder
     src
     
         auxiliary
-        uvicorn app:app --reload
+    
           config.py           # parameters initialized either by enviromental parameters or hard-codeduvicorn app:app --reload
           
           utils.py            # Definition of some classes and functions
@@ -30,7 +30,7 @@ Root Folder
           consider_src.txt    # A prompt to the LLM, which consider source files
           
           ignore_src.txt      # A prompt that ignores source files
-          constraints
+
     services
     
           github_service.py   # Fetch the repository and extract its main information components
