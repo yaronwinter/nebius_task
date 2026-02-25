@@ -10,12 +10,12 @@ Root Folder
     app.py                  # FastAPI application
     
     requirements.txt
-    constraintsconstraints
+    
     src
     
         auxiliary
         uvicorn app:app --reload
-          config.py           # parameters initialized either by enviromental parameters or hard-coded
+          config.py           # parameters initialized either by enviromental parameters or hard-codeduvicorn app:app --reload
           
           utils.py            # Definition of some classes and functions
           
@@ -77,3 +77,7 @@ and due to resources and time constraints I have, I decided to content with this
 * pip install -r requirements.txt
 * export OPENAI_API_KEY=**API CODE for OpenAI**
 * uvicorn app:app --reload  # run the application
+
+*    xxx
+**    yyy
+***    zzz
