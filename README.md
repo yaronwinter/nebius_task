@@ -35,7 +35,7 @@ Root Folder
     
               github_service.py   # Fetch the repository and extract its main information components
           
-              summarizer.py       # Use the LLM for generating a summary descrition of the repo, based on the prompt and the repo's componenets
+              summarizer.py       # Use the LLM for generating a summary descrition of the repo, based on the prompt and the repo's components
 
 
 # LLM Choice
