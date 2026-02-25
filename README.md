@@ -8,33 +8,33 @@ for Nebius Agenitc AI course.
 Root Folder
 
     app.py                  # FastAPI application
-    
+
     requirements.txt
-    
+
     src
-    
+
         auxiliary
-    
+
               config.py           # parameters initialized either by enviromental parameters or hard-coded
-          
+
               utils.py            # Definition of some classes and functions
-          
+
         llm
-    
+
               base.py             # LLM inteface definition
-          
+
               openai_provider.py  # Implementation of OpenAI LLM
-          
+
         prompts
-    
+
               consider_src.txt    # A prompt to the LLM, which consider source files
-          
+
               ignore_src.txt      # A prompt that ignores source files
 
         services
-    
+
               github_service.py   # Fetch the repository and extract its main information components
-          
+
               summarizer.py       # Use the LLM for generating a summary descrition of the repo, based on the prompt and the repo's components
 
 
@@ -48,13 +48,13 @@ First I used the packages *httpx* and *urllib* for fetching the repository and e
 Four components were extracted from the reposirory:
 
   README     - description file
-  
+
   Metadata   - automatically generated details about the repository, beyond its source code
-  
+
   Languages  - the software languages used in the repository
-  
-  files      - all the files which can be found in the repository, regardless of their types and rolesuvicorn app:app --reload
-  
+
+  files      - all the files which can be found in the repository, regardless of their types and roles
+
 
 At first I used all these 4 components, and tried them on a few reposiries known to me.
 The results seemd reasonable and adequate, but the number of files may present a problem for larger repositories.
@@ -62,11 +62,11 @@ As extensive research of this subject is, of course, beyond the scope of this ta
 simple ways for reducing and limiting the amount of information sent to the LLM:
 
       (1) Exclude the *files* components, which is by far the *heavier* repo component
-      
+
       (2) Define a list of source code extensions (e.g. *.py, *.cc, *.js, etc.), and exclude all files with different extensions
-      
+
       (3) Induce a hard limit on the files number (e.g. no more than 500)
-      
+
 
 As the first attempt - excluding the *files* component - induced good performance (very similar to the performance with *files*),
 and due to resources and time constraints I have, I decided to content with this configuration.
