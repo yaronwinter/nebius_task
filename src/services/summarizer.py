@@ -2,8 +2,10 @@ from pathlib import Path
 from jinja2 import Template
 import json
 
+
 def load_prompt():
-    return Path("prompts/summarize.txt").read_text()
+    return Path("src/prompts/summarize.txt").read_text()
+
 
 async def summarize_repository(bundle, llm):
     template = Template(load_prompt())

@@ -22,7 +22,7 @@ async def fetch_repository_bundle(repo_url: str):
 
         readme_resp = await client.get(
             f"{GITHUB_API}/repos/{owner}/{repo}/readme",
-            headers={"Accept": "application/vnd.github.raw"}
+            headers={"Accept": "application/vnd.github.raw"},
         )
 
         languages_resp = await client.get(
@@ -36,6 +36,8 @@ async def fetch_repository_bundle(repo_url: str):
     return {
         "metadata": meta_resp.json(),
         "readme": readme_resp.text if readme_resp.status_code == 200 else "",
-        "languages": list(languages_resp.json().keys()) if languages_resp.status_code == 200 else [],
-        "files": [f["path"] for f in tree_resp.json().get("tree", [])]
+        "languages": list(languages_resp.json().keys())
+        if languages_resp.status_code == 200
+        else [],
+        "files": [f["path"] for f in tree_resp.json().get("tree", [])],
     }

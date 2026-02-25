@@ -1,12 +1,9 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
-from services.github_service import fetch_repository_bundle
-from services.summarizer import summarize_repository
-from utils import logger, SummarizeError, SummarizeSuccess
-from config import LLM_PROVIDER
-from services.llm.openai_provider import OpenAIProvider
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, HttpUrl
+from src.services.github_service import fetch_repository_bundle
+from src.services.summarizer import summarize_repository
+from src.auxiliary import utils
+from src.auxiliary.config import LLM_PROVIDER
+from src.llm.openai_provider import OpenAIProvider
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from requests import Request
@@ -17,49 +14,47 @@ from typing import Union
 if LLM_PROVIDER == "openai":
     llm = OpenAIProvider()
 else:
-    raise Exception(f"Currently the only supported LLM is openai, while {LLM_PROVIDER} was requested")
-
-class SummarizeRequest(BaseModel):
-    github_url: HttpUrl
+    raise Exception(
+        f"Currently only OpenAI LLM is supported, while {LLM_PROVIDER} was requested"
+    )
 
 app = FastAPI()
+
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     return JSONResponse(
         status_code=400,
-        content={
-            "status": "error",
-            "message": "Invalid request format"
-        },
+        content={"status": "error", "message": "Invalid request format"},
     )
 
-@app.post("/summarize", response_model=Union[SummarizeSuccess, SummarizeError])
-async def summarize(request: SummarizeRequest):
 
+@app.post(
+    "/summarize", response_model=Union[utils.SummarizeSuccess, utils.SummarizeError]
+)
+async def summarize(request: utils.SummarizeRequest):
     try:
         repo_url = str(request.github_url)
 
         bundle = await fetch_repository_bundle(repo_url)
 
-        logger.info(f"bundle keys: {bundle.keys()}")
+        utils.logger.info(f"bundle keys: {bundle.keys()}")
 
         result = await summarize_repository(bundle=bundle, llm=llm)
 
-        logger.info(type(result))
-        logger.info(f"result: {result} ### End")
+        utils.logger.info(type(result))
+        utils.logger.info(f"result: {result} ### End")
 
         raw_output = result
         try:
             cleaned = re.sub(r"```json|```", "", result).strip()
             result = json.loads(cleaned)
         except json.JSONDecodeError as e:
-            logger.info(f"parsing error: {e}")
-            return SummarizeError(message=f"LLM returned invalid JSON: {e}\nRaw output:\n{raw_output}")
+            return utils.SummarizeError(
+                message=f"LLM returned invalid JSON: {e}\nRaw output:\n{raw_output}"
+            )
 
-        logger.info("Good Results")
-        return SummarizeSuccess(**result)
-    
+        return utils.SummarizeSuccess(**result)
+
     except Exception as e:
-        logger.info("Results Failed")
-        return SummarizeError(message=str(e))
+        return utils.SummarizeError(message=str(e))
