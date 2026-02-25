@@ -8,21 +8,34 @@ for Nebius Agenitc AI course.
 Root Folder
 
     app.py                  # FastAPI application
-  
-  requirements.txt
-  src
-    auxiliary
-      config.py           # parameters initialized either by enviromental parameters or hard-coded
-      utils.py            # Definition of some classes and functions
+    
+    requirements.txt
+    
+    src
+    
+        auxiliary
+        
+          config.py           # parameters initialized either by enviromental parameters or hard-coded
+          
+          utils.py            # Definition of some classes and functions
+          
     llm
-      base.py             # LLM inteface definition
-      openai_provider.py  # Implementation of OpenAI LLM
+    
+          base.py             # LLM inteface definition
+          
+          openai_provider.py  # Implementation of OpenAI LLM
+          
     prompts
-      consider_src.txt    # A prompt to the LLM, which consider source files
-      ignore_src.txt      # A prompt that ignores source files
+    
+          consider_src.txt    # A prompt to the LLM, which consider source files
+          
+          ignore_src.txt      # A prompt that ignores source files
+          
     services
-      github_service.py   # Fetch the repository and extract its main information components
-      summarizer.py       # Use the LLM for generating a summary descrition of the repo, based on the prompt and the repo's componenets
+    
+          github_service.py   # Fetch the repository and extract its main information components
+          
+          summarizer.py       # Use the LLM for generating a summary descrition of the repo, based on the prompt and the repo's componenets
 
 
 # LLM Choice
