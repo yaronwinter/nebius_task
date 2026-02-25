@@ -7,7 +7,7 @@ for Nebius Agenitc AI course.
 # Repository Content
 Root Folder
 
-  app.py                  # FastAPI application
+    app.py                  # FastAPI application
   
   requirements.txt
   src
