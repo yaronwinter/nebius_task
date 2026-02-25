@@ -15,27 +15,27 @@ Root Folder
     
         auxiliary
     
-          config.py           # parameters initialized either by enviromental parameters or hard-codeduvicorn app:app --reload
+              config.py           # parameters initialized either by enviromental parameters or hard-codeduvicorn app:app --reload
           
-          utils.py            # Definition of some classes and functions
+              utils.py            # Definition of some classes and functions
           
-    llm
+        llm
     
-          base.py             # LLM inteface definition
+              base.py             # LLM inteface definition
           
-          openai_provider.py  # Implementation of OpenAI LLM
+              openai_provider.py  # Implementation of OpenAI LLM
           
-    prompts
+        prompts
     
-          consider_src.txt    # A prompt to the LLM, which consider source files
+              consider_src.txt    # A prompt to the LLM, which consider source files
           
-          ignore_src.txt      # A prompt that ignores source files
+              ignore_src.txt      # A prompt that ignores source files
 
-    services
+        services
     
-          github_service.py   # Fetch the repository and extract its main information components
+              github_service.py   # Fetch the repository and extract its main information components
           
-          summarizer.py       # Use the LLM for generating a summary descrition of the repo, based on the prompt and the repo's componenets
+              summarizer.py       # Use the LLM for generating a summary descrition of the repo, based on the prompt and the repo's componenets
 
 
 # LLM Choice
