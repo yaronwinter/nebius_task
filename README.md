@@ -11,10 +11,6 @@ Root Folder
     
     requirements.txt
     
-
-*    xxx
-**    yyy
-***    zzz
     src
     
         auxiliary
