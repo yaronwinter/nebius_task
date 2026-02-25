@@ -60,9 +60,13 @@ At first I used all these 4 components, and tried them on a few reposiries known
 The results seemd reasonable and adequate, but the number of files may present a problem for larger repositories.
 As extensive research of this subject is, of course, beyond the scope of this task, I decided to try few
 simple ways for reducing and limiting the amount of information sent to the LLM:
-  (1) Exclude the *files* components, which is by far the *heavier* repo component
-  (2) Define a list of source code extensions (e.g. *.py, *.cc, *.js, etc.), and exclude all files with different extensions
-  (3) Induce a hard limit on the files number (e.g. no more than 500)
+
+      (1) Exclude the *files* components, which is by far the *heavier* repo component
+      
+      (2) Define a list of source code extensions (e.g. *.py, *.cc, *.js, etc.), and exclude all files with different extensions
+      
+      (3) Induce a hard limit on the files number (e.g. no more than 500)
+      
 
 As the first attempt - excluding the *files* component - induced good performance (very similar to the performance with *files*),
 and due to resources and time constraints I have, I decided to content with this configuration.
