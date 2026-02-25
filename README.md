@@ -10,7 +10,7 @@ Root Folder
     app.py                  # FastAPI application
     
     requirements.txt
-    
+    constraints
     src
     
         auxiliary
@@ -30,7 +30,7 @@ Root Folder
           consider_src.txt    # A prompt to the LLM, which consider source files
           
           ignore_src.txt      # A prompt that ignores source files
-          
+          constraints
     services
     
           github_service.py   # Fetch the repository and extract its main information components
@@ -46,10 +46,15 @@ The specific model I chose is *gpt-4o-mini*, which is known to be a good choice,
 # Handle Repository Content
 First I used the packages *httpx* and *urllib* for fetching the repository and extract its main information components.
 Four components were extracted from the reposirory:
+
   README     - description file
+  
   Metadata   - automatically generated details about the repository, beyond its source code
+  
   Languages  - the software languages used in the repository
+  
   files      - all the files which can be found in the repository, regardless of their types and roles
+  
 
 At first I used all these 4 components, and tried them on a few reposiries known to me.
 The results seemd reasonable and adequate, but the number of files may present a problem for larger repositories.
