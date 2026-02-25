@@ -1,5 +1,6 @@
 import httpx
 from urllib.parse import urlparse
+from src.auxiliary.utils import logger
 
 GITHUB_API = "https://api.github.com"
 
@@ -16,7 +17,9 @@ async def fetch_repository_bundle(repo_url: str):
     owner, repo = parse_repo(repo_url)
 
     async with httpx.AsyncClient() as client:
+        logger.info(f"Call httpx.AsyncClient: owner={owner}, repo={repo}")
         meta_resp = await client.get(f"{GITHUB_API}/repos/{owner}/{repo}")
+        logger.info(f"Status Code = {meta_resp.status_code}")
         if meta_resp.status_code != 200:
             raise ValueError("Repository not found")
 
@@ -29,11 +32,9 @@ async def fetch_repository_bundle(repo_url: str):
             f"{GITHUB_API}/repos/{owner}/{repo}/languages"
         )
 
-        """
         tree_resp = await client.get(
             f"{GITHUB_API}/repos/{owner}/{repo}/git/trees/HEAD?recursive=1"
         )
-        """
 
     return {
         "metadata": meta_resp.json(),
@@ -41,5 +42,5 @@ async def fetch_repository_bundle(repo_url: str):
         "languages": list(languages_resp.json().keys())
         if languages_resp.status_code == 200
         else [],
-        # "files": [f["path"] for f in tree_resp.json().get("tree", [])],
+        "files": [f["path"] for f in tree_resp.json().get("tree", [])],
     }
