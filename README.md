@@ -15,7 +15,7 @@ Root Folder
     
         auxiliary
     
-              config.py           # parameters initialized either by enviromental parameters or hard-codeduvicorn app:app --reload
+              config.py           # parameters initialized either by enviromental parameters or hard-coded
           
               utils.py            # Definition of some classes and functions
           
