@@ -11,6 +11,10 @@ Root Folder
     
     requirements.txt
     
+
+*    xxx
+**    yyy
+***    zzz
     src
     
         auxiliary
@@ -77,7 +81,3 @@ and due to resources and time constraints I have, I decided to content with this
 * pip install -r requirements.txt
 * export OPENAI_API_KEY=**API CODE for OpenAI**
 * uvicorn app:app --reload  # run the application
-
-*    xxx
-**    yyy
-***    zzz
