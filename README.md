@@ -28,4 +28,5 @@ I chose to use OpenAI, as I'm most familiar with it for similar task, and it is 
 rather competative regarding code generation and analysis tasks.
 The specific model I chose is gpt-4o-mini, which is known to be a good choice, from cost-performance perspective.
 
-
+# Handle Repository Content
+First I used the **packages** httpx and urllib
