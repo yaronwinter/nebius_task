@@ -14,7 +14,7 @@ Root Folder
     src
     
         auxiliary
-        
+        uvicorn app:app --reload
           config.py           # parameters initialized either by enviromental parameters or hard-coded
           
           utils.py            # Definition of some classes and functions
@@ -53,7 +53,7 @@ Four components were extracted from the reposirory:
   
   Languages  - the software languages used in the repository
   
-  files      - all the files which can be found in the repository, regardless of their types and roles
+  files      - all the files which can be found in the repository, regardless of their types and rolesuvicorn app:app --reload
   
 
 At first I used all these 4 components, and tried them on a few reposiries known to me.
@@ -72,7 +72,8 @@ As the first attempt - excluding the *files* component - induced good performanc
 and due to resources and time constraints I have, I decided to content with this configuration.
 
 # Step-By-Step Setup Instructions
-*    Download **nebius_task.zip** and unzip it in your convenient location
-* 
-*    yyy
-*    zzz
+* Download **nebius_task.zip** and unzip it in your convenient location
+* Create conda environment (e.g. conda create --name <myenvironment> python=3.11). Virtual environment is fine too.
+* pip install -r requirements.txt
+* export OPENAI_API_KEY=**API CODE for OpenAI**
+* uvicorn app:app --reload  # run the application
