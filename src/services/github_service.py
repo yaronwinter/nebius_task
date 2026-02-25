@@ -29,9 +29,11 @@ async def fetch_repository_bundle(repo_url: str):
             f"{GITHUB_API}/repos/{owner}/{repo}/languages"
         )
 
+        """
         tree_resp = await client.get(
             f"{GITHUB_API}/repos/{owner}/{repo}/git/trees/HEAD?recursive=1"
         )
+        """
 
     return {
         "metadata": meta_resp.json(),
@@ -39,5 +41,5 @@ async def fetch_repository_bundle(repo_url: str):
         "languages": list(languages_resp.json().keys())
         if languages_resp.status_code == 200
         else [],
-        "files": [f["path"] for f in tree_resp.json().get("tree", [])],
+        # "files": [f["path"] for f in tree_resp.json().get("tree", [])],
     }

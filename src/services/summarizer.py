@@ -4,7 +4,7 @@ import json
 
 
 def load_prompt():
-    return Path("src/prompts/summarize.txt").read_text()
+    return Path("src/prompts/eliminate.txt").read_text()
 
 
 async def summarize_repository(bundle, llm):
@@ -13,7 +13,7 @@ async def summarize_repository(bundle, llm):
         metadata=json.dumps(bundle["metadata"], indent=2),
         readme=bundle["readme"],
         languages=json.dumps(bundle["languages"], indent=2),
-        files=json.dumps(bundle["files"], indent=2),
+        # files=json.dumps(bundle["files"], indent=2),
     )
 
     return await llm.generate(prompt)
